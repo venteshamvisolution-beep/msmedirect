@@ -1,0 +1,64 @@
+[21-Dec-2023 11:33:56 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:33:59 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:34:17 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:34:30 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:34:32 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:34:36 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:34:39 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:34:39 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[21-Dec-2023 11:34:39 UTC] PHP Warning:  Undefined variable $number in /home/fivelaravel/public_html/MsmeDirect/vendor/filament/support/src/helpers.php on line 36
+[22-Dec-2023 09:44:43 UTC] PHP Fatal error:  Allowed memory size of 1073741824 bytes exhausted (tried to allocate 473972736 bytes) in /home/fivelaravel/public_html/MsmeDirect/storage/framework/views/c19b5fec1f0ac8114f65347694ea840d.php on line 2164
+[22-Dec-2023 10:31:10 UTC] PHP Fatal error:  Allowed memory size of 1073741824 bytes exhausted (tried to allocate 803213312 bytes) in /home/fivelaravel/public_html/MsmeDirect/storage/framework/views/d1728dbf9b99317cd5b10408ac8351d6.php on line 43
+[02-Jan-2024 11:00:26 UTC] PHP Fatal error:  Cannot declare class App\Models\News, because the name is already in use in /home/fivelaravel/public_html/MsmeDirect/app/Models/BusinessCategory.php on line 8
+[03-Jan-2024 10:42:17 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/fivelaravel/public_html/MsmeDirect/app/Filament/Resources/UserDataResource.php on line 85
+[10-Jan-2024 18:47:12 UTC] PHP Fatal error:  Cannot redeclare App\Filament\Resources\UserDataResource\Pages\EditUserData::afterSave() in /home/fivelaravel/public_html/MsmeDirect/app/Filament/Resources/UserDataResource/Pages/EditUserData.php on line 42
+[12-Jan-2024 07:20:04 UTC] PHP Fatal error:  Allowed memory size of 1073741824 bytes exhausted (tried to allocate 803213312 bytes) in /home/fivelaravel/public_html/MsmeDirect/app/Models/Connections.php on line 37
+[25-Jan-2024 13:12:28 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 7.4.33. in /home/msmedirect/public_html/vendor/composer/platform_check.php on line 24
+[25-Jan-2024 13:16:59 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.27. in /home/msmedirect/public_html/vendor/composer/platform_check.php on line 24
+[09-Feb-2024 05:43:17 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.27. in /home/msmedirect/public_html/vendor/composer/platform_check.php on line 24
+[09-Feb-2024 05:43:18 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.27. in /home/msmedirect/public_html/vendor/composer/platform_check.php on line 24
+[09-Feb-2024 05:43:26 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.27. in /home/msmedirect/public_html/vendor/composer/platform_check.php on line 24
+[09-Feb-2024 05:43:26 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.27. in /home/msmedirect/public_html/vendor/composer/platform_check.php on line 24
+[06-Jan-2026 07:02:36 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[06-Jan-2026 07:02:37 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[06-Jan-2026 07:02:37 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[06-Jan-2026 07:06:17 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:51:51 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:51:51 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:51:52 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:51:52 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:51:52 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:52:37 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:57:35 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:57:36 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 10:57:36 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 11:14:03 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 11:14:04 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 11:14:04 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 11:14:05 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 11:14:05 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 11:18:38 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-Jan-2026 11:20:40 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2026 06:21:05 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Jan-2026 11:56:44 Asia/Kolkata] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Mail as Mail because the name is already in use in /home/msmedirect/public_html/app/Http/Controllers/AuthController.php on line 22
+[21-Jan-2026 06:29:39 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[08-Jun-2026 06:04:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function proc_open() in /home/msmedirect/public_html/cmd.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/cmd.php on line 22
+[08-Jun-2026 06:04:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function proc_open() in /home/msmedirect/public_html/cmd.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/cmd.php on line 22
+[08-Jun-2026 06:04:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function proc_open() in /home/msmedirect/public_html/cmd.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/cmd.php on line 22
+[08-Jun-2026 06:04:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function proc_open() in /home/msmedirect/public_html/cmd.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/cmd.php on line 22
+[17-Sep-2026 11:56:28 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[17-Sep-2026 12:37:23 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[17-Sep-2026 12:37:38 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[17-Sep-2026 12:37:57 UTC] PHP Warning:  Version warning: Imagick was compiled against ImageMagick version 1692 but version 1693 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0

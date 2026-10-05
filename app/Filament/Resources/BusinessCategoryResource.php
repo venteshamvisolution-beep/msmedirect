@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\BusinessCategoryResource\Pages;
+use App\Filament\Resources\BusinessCategoryResource\RelationManagers;
+use App\Models\BusinessCategory;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Select;
+
+class BusinessCategoryResource extends Resource
+{
+    protected static ?string $model = BusinessCategory::class;
+protected static ?string $navigationGroup = 'Masters';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Select::make('type')->options(config('app.business_type'))->required(),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                //
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('type')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                //
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListBusinessCategories::route('/'),
+            'create' => Pages\CreateBusinessCategory::route('/create'),
+            'edit' => Pages\EditBusinessCategory::route('/{record}/edit'),
+        ];
+    }
+}

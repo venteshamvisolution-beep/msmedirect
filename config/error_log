@@ -1,0 +1,32 @@
+[15-May-2024 04:20:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/database.php on line 18
+[10-Aug-2024 18:26:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/cache.php on line 18
+[12-Aug-2024 16:04:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/cache.php on line 18
+[15-Aug-2024 15:29:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/cache.php on line 18
+[18-Aug-2024 05:36:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/cache.php on line 18
+[18-Aug-2024 16:02:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/cache.php on line 18
+[25-Aug-2024 10:27:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/cache.php on line 18
+[14-Nov-2024 03:37:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/msmedirect/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/msmedirect/public_html/config/database.php on line 18

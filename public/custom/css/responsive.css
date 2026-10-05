@@ -1,0 +1,143 @@
+@media only screen and (max-width: 991px){
+    
+  .mobo-t-hide{
+    display: none !important;
+  }
+
+  .des-t-hide{
+    display: block  !important;
+  }
+
+  .sidenav ul.dropdown-menu.show {
+    background: transparent;
+    border: none;
+    width: 100%;
+    position: relative !important;
+    display: inline;
+}
+
+.sidenav ul.dropdown-menu.show li a {
+  font-size: 21px;
+}
+
+.sidenav ul.dropdown-menu.show li:hover{
+  background-color: transparent;
+}
+}   
+
+@media only screen and (max-width: 600px) {
+    
+    .mobo-hide{
+      display: none !important;
+    }
+
+    .des-hide{
+      display: block  !important;
+    }
+
+    .home-banner-img img {
+      height: 491px;
+      object-fit: cover;
+  }
+
+  .search-banner h1 {
+    font-size: 47px;
+}
+
+.head-menu-flex{
+  justify-content: flex-end;
+}
+
+a.cat-col {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  min-height: 148px;
+}
+
+.cat-img {
+  width: 100%;
+  margin-bottom: 13px;
+}
+
+.cat-title h6 {
+  margin: 0;
+}
+
+.bottom-foot-text {
+  text-align: center;
+}
+
+ul.bottom-foot-menu li a {
+  margin-right: 9px;
+  font-size: 15px;
+}
+
+a.btn.main-logo img {
+  max-height: 45px;
+}
+
+
+.cus-check-contain {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-sec form input, .login-sec form textarea, .login-sec form select {
+  font-size: 13px;
+}
+
+.hm-search h1 {
+
+
+  font-size: 31px;
+}
+
+.hm-search {
+  margin-top: 115px;
+}
+
+.category-sec {
+  margin-top: -100px;
+} 
+
+.hm-about-content .main-title h4 {
+  font-size: 48px;
+  
+}
+.main-title h4 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.comp-sec {
+  width: 45%;
+  margin-bottom: 20px;
+}
+
+.contact-sec h4 {
+  margin-bottom: 30px;
+}
+
+.top-filter {
+
+  top: 8%;
+}
+
+
+.hm-about-content.abt-cont {
+  padding: 10px;
+}
+
+.hm-about-content.abt-cont .main-title h4 {
+  font-size: 46px !important;
+}
+
+.rge-data-flex .reg-data {
+  width: 100% !important;
+  
+}
+  
+  }
