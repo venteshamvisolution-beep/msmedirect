@@ -50,6 +50,9 @@
 </head>
 <body>
 
+@if(!empty($customContent))
+    {!! $customContent !!}
+@else
 <p><strong>Dear {{ $businessData->company ?: $businessData->person_name ?: 'MSME Member' }},</strong></p>
 
 <p>We came across your company's online business profile and would like to invite you to register with MSME Direct.</p>
@@ -100,6 +103,6 @@ Website: <a href="https://msmedirect.com/" target="_blank">https://msmedirect.co
 
 <p><strong>Give your business the opportunity to spread its wings.</strong><br>
 <strong>Register • Connect • Grow • Expand</strong></p>
-
+@endif
 </body>
 </html>

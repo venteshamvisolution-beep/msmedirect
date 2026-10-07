@@ -330,6 +330,12 @@ class AuthController extends Controller
 
         $requestData = $request->all();
 
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "</pre>";
+        // exit;
+
         $businessType = $requestData['business_type'] ?? null;
         $typeOrganizationName = $requestData['type_organization'] ?? '';
         $msmeType = $requestData['msme_type'] ?? '';
@@ -376,6 +382,7 @@ class AuthController extends Controller
         $requestData['want_to'] = $requestData['want_to'] ?? '';
         $requestData['address'] = $requestData['address'] ?? '';
         $requestData['others'] = $requestData['others'] ?? '';
+        $requestData['website'] = $requestData['website'] ?? '';
 
         $businessDataId = $request->get('msme_business_data_id') ?: session('msme_business_data_id');
         if (!empty($businessDataId)) {

@@ -14,11 +14,11 @@ class BusinessEmailCampaignResource extends Resource
 {
     protected static ?string $model = BusinessEmailCampaign::class;
 
-    protected static bool $shouldRegisterNavigation = true;
+    protected static bool $shouldRegisterNavigation = false;
 
-    protected static ?string $navigationGroup = 'Business Data';
+    // protected static ?string $navigationGroup = 'Business Data';
 
-    protected static ?string $navigationLabel = 'Email Campaigns';
+    // protected static ?string $navigationLabel = 'Email Campaigns';
 
     protected static ?string $modelLabel = 'Email Campaign';
 

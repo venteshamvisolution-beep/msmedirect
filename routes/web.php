@@ -22,6 +22,37 @@ Route::get('/config-cache', function () {
     return 'Config cache cleared';
 });
 
+Route::get('/run-queue', function () {
+    ini_set('memory_limit', '512M');
+    set_time_limit(300);
+
+    $connection = env('QUEUE_CONNECTION', 'redis');
+    $output = "Queue Connection: {$connection}\n";
+
+    // Loop up to 10 iterations to ensure both parent campaign jobs and generated child email jobs are fully processed
+    for ($i = 1; $i <= 10; $i++) {
+        Artisan::call('queue:work', [
+            'connection' => $connection,
+            '--queue' => 'business-campaigns,business-emails,default',
+            '--stop-when-empty' => true,
+        ]);
+        $stepOutput = trim(Artisan::output());
+        if (!empty($stepOutput)) {
+            $output .= "--- Iteration {$i} ---\n" . $stepOutput . "\n";
+        } else {
+            break;
+        }
+    }
+
+    $campaigns = \App\Models\BusinessEmailCampaign::latest()->take(5)->get();
+    $output .= "\n--- Latest 5 Campaigns Status ---\n";
+    foreach ($campaigns as $c) {
+        $output .= "ID #{$c->id} | Name: {$c->name} | Status: {$c->status} | Total: {$c->total_count} | Skipped: {$c->skipped_count} | Queued: {$c->queued_count} | Sent: {$c->sent_count} | Delivered: {$c->delivered_count} | Failed: {$c->failed_count}\n";
+    }
+
+    return '<pre>' . htmlspecialchars($output) . '</pre>';
+});
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -44,12 +75,6 @@ Route::get('/refund-policy', function () {
 Route::get('/term-condition', function () {
     return view('termConditions');
 })->name('termCondition');
-
-
-
-
-
-
 
 Route::get('/contact-us', function () {
     return view('info.contactUs');
@@ -115,10 +140,7 @@ Route::get('/category/{productservice}', [App\Http\Controllers\CategoryControlle
 Route::get('/user-connections', [App\Http\Controllers\HomeController::class, 'userConnections'])->name('userConnections');
 Route::get('/request-connection/{productservice}', [App\Http\Controllers\HomeController::class, 'requestConnection'])->name('requestConnection');
 
-Route::get(
-    '/accept-connection/{id}/{discount?}',
-    [App\Http\Controllers\HomeController::class, 'acceptConnection']
-)->name('acceptConnection');
+Route::get('/accept-connection/{id}/{discount?}', [App\Http\Controllers\HomeController::class, 'acceptConnection'])->name('acceptConnection');
 
 
 Route::get('/decline-connection/{productservice}', [App\Http\Controllers\HomeController::class, 'declineConnection'])->name('declineConnection');

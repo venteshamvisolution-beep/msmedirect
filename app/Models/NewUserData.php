@@ -13,6 +13,8 @@ class NewUserData extends Model
         'msme_business_data_id',
         'is_bulk_user',
         'organization_name',
+        'company',
+        'person_name',
         'business_type',
         'type_organization',
         'msme_type',
@@ -20,7 +22,10 @@ class NewUserData extends Model
         'business_sub_category',
         'specialization',
         'contact_no',
+        'office_no',
+        'mobile_no',
         'email',
+        'website',
         'pincode',
         'city',
         'state',
@@ -31,6 +36,7 @@ class NewUserData extends Model
         'business_size',
         'approve',
         'address',
+        'details',
         'remark'
     ];
 

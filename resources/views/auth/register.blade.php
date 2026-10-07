@@ -141,11 +141,14 @@
         <div class="col-12">
             <h6>Contact Details</h6>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <input type="number" placeholder="Contact Number" id="contact_no" name="contact_no" value="{{ old('contact_no', isset($businessData) ? preg_replace('/[^0-9]/', '', $businessData->mobile_no ?: $businessData->office_no) : '') }}">
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <input type="email" placeholder="Email Address" id="email" name="email" value="{{ old('email', $businessData->email ?? '') }}">
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <input type="text" placeholder="Website" id="website" name="website" value="{{ old('website', isset($businessData->website) ? $businessData->website : '') }}">
         </div>
 
         <div class="col-lg-12">

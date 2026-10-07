@@ -6,11 +6,13 @@ use App\Filament\Resources\MsmeBusinessDataResource;
 use App\Jobs\StartBusinessEmailCampaign;
 use App\Models\BusinessEmailCampaign;
 use App\Models\MsmeBusinessData;
+use App\Models\UserData;
 use Filament\Actions;
+use Filament\Forms;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
-
-use Filament\Forms;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class ListMsmeBusinessData extends ListRecords
 {
@@ -19,6 +21,172 @@ class ListMsmeBusinessData extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+            Actions\Action::make('registerUsers')
+                ->label('Auto Register Users')
+                ->icon('heroicon-o-user-plus')
+                ->color('primary')
+                ->requiresConfirmation()
+                ->modalHeading('Auto Register Business Users in User Data')
+                ->modalDescription(function () {
+                    $totalMsme = MsmeBusinessData::count();
+                    $registeredMsmeCount = UserData::whereNotNull('msme_business_data_id')->count();
+                    $unregisteredCount = max(0, $totalMsme - $registeredMsmeCount);
+                    return "Identify and register all Business Data records that do not currently exist in the User Data table (Estimated unregistered: {$unregisteredCount} of {$totalMsme}). Records that already exist will be skipped automatically to prevent duplicate users.";
+                })
+                ->modalSubmitActionLabel('Register Users')
+                ->action(function () {
+                    ini_set('memory_limit', '1024M');
+                    set_time_limit(0);
+                    DB::disableQueryLog();
+
+                    // Check which optional columns exist in user_data table on the database
+                    $hasCompanyCol = Schema::hasColumn('user_data', 'company');
+                    $hasPersonNameCol = Schema::hasColumn('user_data', 'person_name');
+                    $hasOfficeNoCol = Schema::hasColumn('user_data', 'office_no');
+                    $hasMobileNoCol = Schema::hasColumn('user_data', 'mobile_no');
+                    $hasWebsiteCol = Schema::hasColumn('user_data', 'website');
+                    $hasDetailsCol = Schema::hasColumn('user_data', 'details');
+
+                    // Pre-fetch all existing UserData msme_business_data_ids and emails into hash sets for instant O(1) checks
+                    $existingMsmeIds = UserData::query()
+                        ->whereNotNull('msme_business_data_id')
+                        ->pluck('msme_business_data_id', 'msme_business_data_id')
+                        ->toArray();
+
+                    $existingEmails = [];
+                    foreach (UserData::query()->whereNotNull('email')->where('email', '!=', '')->pluck('email') as $eVal) {
+                        $existingEmails[strtolower(trim((string) $eVal))] = true;
+                    }
+
+                    $businessRecords = MsmeBusinessData::all();
+
+                    $registeredCount = 0;
+                    $skippedCount = 0;
+                    $failedCount = 0;
+                    $errors = [];
+                    $processedEmailsInBatch = [];
+
+                    DB::beginTransaction();
+                    try {
+                        foreach ($businessRecords as $bData) {
+                            // Check 1: Skip if msme_business_data_id already registered
+                            if (isset($existingMsmeIds[$bData->id])) {
+                                $skippedCount++;
+                                continue;
+                            }
+
+                            // Check 2: Skip if email already exists in UserData or repeated in batch
+                            $email = !empty($bData->email) ? strtolower(trim((string) $bData->email)) : null;
+                            if (!empty($email)) {
+                                if (isset($existingEmails[$email]) || isset($processedEmailsInBatch[$email])) {
+                                    $skippedCount++;
+                                    continue;
+                                }
+                                $processedEmailsInBatch[$email] = true;
+                            }
+
+                            $company = !empty($bData->company) ? trim((string) $bData->company) : null;
+                            $personName = !empty($bData->person_name) ? trim((string) $bData->person_name) : null;
+                            $address = !empty($bData->address) ? trim((string) $bData->address) : (!empty($bData->add) ? trim((string) $bData->add) : null);
+                            $mobileNo = !empty($bData->mobile_no) ? trim((string) $bData->mobile_no) : null;
+                            $officeNo = !empty($bData->office_no) ? trim((string) $bData->office_no) : null;
+                            $contactNo = $mobileNo ?? $officeNo ?? '0000000000';
+                            $city = !empty($bData->city) ? trim((string) $bData->city) : '';
+                            $state = !empty($bData->state) ? trim((string) $bData->state) : '';
+                            $pincode = !empty($bData->pincode) && is_numeric($bData->pincode) ? (int) $bData->pincode : 0;
+                            $website = !empty($bData->website) ? trim((string) $bData->website) : null;
+                            $details = !empty($bData->details) ? trim((string) $bData->details) : null;
+
+                            $userDataPayload = [
+                                'msme_business_data_id' => $bData->id,
+                                'is_bulk_user' => true,
+                                'organization_name' => $company ?? $personName ?? 'N/A',
+                                'email' => $bData->email,
+                                'contact_no' => $contactNo,
+                                'address' => $address,
+                                'city' => $city,
+                                'state' => $state,
+                                'pincode' => $pincode,
+                                'business_type' => 0,
+                                'type_organization' => 'MSME',
+                                'msme_type' => 'Micro',
+                                'business_category' => 1,
+                                'specialization' => 'General',
+                                'experience' => 1,
+                                'document_no' => 'N/A',
+                                'document_file' => [],
+                                'state_city' => !empty($state) ? $state : 'All',
+                                'business_size' => ['micro'],
+                                'approve' => 1,
+                                'want_to' => 'Connect',
+                            ];
+
+                            if ($hasCompanyCol) $userDataPayload['company'] = $company;
+                            if ($hasPersonNameCol) $userDataPayload['person_name'] = $personName;
+                            if ($hasOfficeNoCol) $userDataPayload['office_no'] = $officeNo;
+                            if ($hasMobileNoCol) $userDataPayload['mobile_no'] = $mobileNo;
+                            if ($hasWebsiteCol) $userDataPayload['website'] = $website;
+                            if ($hasDetailsCol) $userDataPayload['details'] = $details;
+
+                            try {
+                                UserData::create($userDataPayload);
+
+                                $existingMsmeIds[$bData->id] = true;
+                                $registeredCount++;
+                            } catch (\Throwable $e) {
+                                $failedCount++;
+                                $errors[] = "Business Data ID #{$bData->id}: " . $e->getMessage();
+                            }
+                        }
+
+                        DB::commit();
+                    } catch (\Throwable $e) {
+                        DB::rollBack();
+                        Notification::make()
+                            ->danger()
+                            ->title('Registration Error')
+                            ->body('Failed to register users: ' . $e->getMessage())
+                            ->send();
+                        return;
+                    }
+
+                    // Build Notification Summary
+                    if ($registeredCount === 0 && $failedCount === 0 && $skippedCount > 0) {
+                        Notification::make()
+                            ->info()
+                            ->title('All Records Already Exist')
+                            ->body("All {$skippedCount} records already exist in the User Data module. No new records were registered.")
+                            ->send();
+                    } elseif ($failedCount === 0) {
+                        $summaryMsg = "Successfully registered {$registeredCount} users into User Data.";
+                        if ($skippedCount > 0) {
+                            $summaryMsg .= " {$skippedCount} records skipped (already exist in User Data).";
+                        }
+
+                        Notification::make()
+                            ->success()
+                            ->title('User Registration Completed')
+                            ->body($summaryMsg)
+                            ->send();
+                    } else {
+                        $summaryMsg = "Successfully registered {$registeredCount} users into User Data.";
+                        if ($skippedCount > 0) {
+                            $summaryMsg .= " {$skippedCount} records skipped (already exist in User Data).";
+                        }
+                        $summaryMsg .= " {$failedCount} records failed.";
+
+                        $errSummary = "\n\nErrors:\n" . implode("\n", array_slice($errors, 0, 5));
+                        if (count($errors) > 5) {
+                            $errSummary .= "\n...and " . (count($errors) - 5) . " more errors.";
+                        }
+
+                        Notification::make()
+                            ->warning()
+                            ->title('User Registration Completed with Warnings')
+                            ->body($summaryMsg . $errSummary)
+                            ->send();
+                    }
+                }),
             Actions\Action::make('sendEmailCampaign')
                 ->label('Start Automated Campaign')
                 ->icon('heroicon-o-paper-airplane')
